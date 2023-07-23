@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registration Form</title>
+    <style>
+        body {
+            display: flex;
+            /* font-family: Arial, sans-serif; */
+            background-color: #f4f4f4;
+            justify-content: space-around;
+            /* width: 80%; */
+        }
+
+        .container {
+            display: grid;
+            width: 400px;
+            margin: auto 0px;
+            padding: 120px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+
+        }
+
+        h2 {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            background-color: #45a049;
+            text-align: center;
+
+        }
+
+        h2:hover {
+            color: beige;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="Website"],
+        input[type="Website"] {
+            /* type from image to website */
+            /* display: grid; */
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .submit-btn {
+            width: 40%;
+            background-color: #4caf50;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        input[type="reset"] {
+            width: 20%;
+            background-color: red;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 8px;
+
+        }
+
+        input[type="button"]:hover {
+            background-color: #45a049;
+
+        }
+
+        input[type="reset"]:hover {
+            background-color: red;
+
+        }
+
+        .error {
+            color: red;
+        }
+
+        .in {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 90px;
+            height: 30px;
+        }
+
+        .hidden {
+            display: none;
+    
+        }
+
+        #submittedInfo {
+            margin-top: 0;
+            position: relative;
+            
+        }
+        .inner{
+            position: absolute;
+            bottom:190px;
+            right: 0;
+        }
+
+    </style>
+    <script>
+        function displayInformation() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var Website = document.getElementById('Website').value;
+            var Image = document.getElementById('Image').value;
+            var Gender = document.getElementById('Gender').value;
+            var skills = document.getElementsByClassName('Skills')
+
+            let selectedCheckboxes = []
+            for (var i = 0; i < skills.length; i++) {
+                if (skills[i].checked) {
+                    selectedCheckboxes.push(skills[i].value);
+                }
+            }
+
+            // var Skills = document.getElementById('Skills').value;
+
+            // Retrieve other form fields as needed
+
+            document.getElementById('submittedInfo').innerHTML = `
+                <h2>Submitted Information:</h2>
+                <p>Name: ${name}</p>
+                <p>Email: ${email}</p>
+                <p>Website: ${Website}</p>
+                <img class='inner'style="width:200px;height:200px;" src=${Image} alt="image"/>
+                <p>Gender: ${Gender}</p>
+                <p>Skills: ${selectedCheckboxes.join(',')}</p>
+                <!-- Display other form fields here -->
+            `;
+            document.getElementById('submittedInfo').classList.remove('hidden');
+        }
+        function showError(errorMessage) {
+            var errorElement = document.createElement("div");
+            errorElement.className = "error";
+            errorElement.textContent = errorMessage;
+            var container = document.querySelector(".container");
+            container.insertBefore(errorElement, document.getElementById("registrationForm"));
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+
+        <h2> Students Registration Form</h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br>
+            </br>
+            <label for="Website">Website:</label>
+            <input type="Website" id="Website" required>
+            </br>
+            </br>
+            <label for="Image">Image Link:</label>
+            <input type="Website" id="Image" required>
+            </br>
+            </br>
+            <div class="gender">
+                <label for="Gender">Gender:</label>
+                <input type="radio" id="Gender" value="Male" required>
+                Male
+                </br>
+            </div>
+            <input style='margin-left:60px' type="radio" id="Gender" value="Female" required>
+            Female
+            </br>
+            </br>
+            <label for="Skills">Skills:</label>
+            <input type="checkbox" class="Skills" value="HTML" required>
+            HTML
+            <input type="checkbox" class="Skills" value="CSS" required>
+            CSS
+            <input type="checkbox" class="Skills " value="JAVASCRIPT" required>
+            JAVASCRIPT
+            <input type="checkbox" class="Skills" value="JAVA" required>
+            JAVA
+            <!-- Add more fields here as needed -->
+            <div class="in">
+                <!-- <button type="button" onclick="displayInformation()">Enrolled Students</button> -->
+                <button type="button" class="submit-btn" onclick="displayInformation()">Enroll Student</button>
+                <!-- <button type="reset" onclick="displayInformation()">clear</button> -->
+                <input type="reset" value="clear">
+            </div>
+        </form>
+
+    </div>
+    <div id="submittedInfo" class="container hidden"></div>
+</body>
+
+</html>
