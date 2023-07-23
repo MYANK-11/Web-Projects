@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Todo List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 1px;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+        }
+
+        #todo-container {
+            padding: 20px;
+            display: flex;
+          flex-direction:column;
+            width: 100%;
+            background-color: blueviolet;
+        }
+      .todo-bar{
+        display:flex;
+        width:90%;
+        margin:0 auto;
+        gap:8px;
+      }
+
+         #on {
+            width: 10%;
+            
+        } 
+
+        #todo-input {
+
+            width: 99%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+
+        }
+
+        #todo-input::placeholder {
+            color: aquamarine;
+        }
+
+        #todo-list {
+            margin-top: 10px;
+        }
+
+        .todo-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .todo-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .todo-item .todo-text {
+            width: 90%;
+        }
+
+        .todo-item .delete-button {
+            color: red;
+            cursor: pointer;
+        }
+
+        .placeholder {
+            color: rgb(63, 245, 245);
+        }
+        .todo-text:hover{
+            background-color: cyan;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="todo-container">
+    <h1>My To Do List</h1>
+      <div class="todo-bar">
+        <input type="text" id="todo-input" placeholder="Title...">
+        <button id="on">ADD</button>
+      </div>
+    </div>
+        <ul id="todo-list"></ul>
+
+    <script>
+        // Get the necessary elements
+        const todoInput = document.getElementById('todo-input');
+        const todoList = document.getElementById('todo-list');
+        const todoAdd = document.getElementById('on');
+        function todoFunction () {
+          // Create a new todo item
+                const todoItem = document.createElement('li');
+                todoItem.className = 'todo-item';
+
+                // Create a checkbox
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.addEventListener('change', function () {
+                    // Mark the todo as completed or not completed
+                    if (checkbox.checked) {
+                        todoText.style.textDecoration = 'line-through';
+                    } else {
+                        todoText.style.textDecoration = 'none';
+                    }
+                });
+
+                // Create a text span for the todo
+                const todoText = document.createElement('span');
+                todoText.className = 'todo-text';
+                todoText.innerText = todoInput.value;
+
+                // Create a delete button
+                const deleteButton = document.createElement('span');
+                deleteButton.className = 'delete-button';
+                deleteButton.innerText = 'x';
+                deleteButton.addEventListener('click', function () {
+                    // Remove the todo item
+                    todoItem.remove();
+                });
+
+                // Append the elements to the todo item
+                todoItem.appendChild(checkbox);
+                todoItem.appendChild(todoText);
+                todoItem.appendChild(deleteButton);
+
+                // Append the todo item to the todo list
+                todoList.appendChild(todoItem);
+
+                // Clear the input field
+                todoInput.value = '';
+
+        }
+        // Add event listener to input field for adding new todos
+        todoInput.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' && todoInput.value !== '') {
+              todoFunction()
+            }
+        });
+      todoAdd.addEventListener('click', function (event) {
+              todoFunction()
+        });
+    </script>
+</body>
+
+</html>
