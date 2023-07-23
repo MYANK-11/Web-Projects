@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Calculator</title>
+  <link rel="stylesheet" type="text/css" href="calculator.css">
+</head>
+
+<body>
+  <div class="calculator">
+    <div class="tag">
+      <input type="text" id="result" disabled>
+      <button onclick="clearResult()">c</button>
+    </div>
+
+    <div class="keypad">
+    <div class="keypad-row">
+      <button onclick="appendToResult(1)">1</button>
+      <button onclick="appendToResult(2)">2</button>
+      <button onclick="appendToResult(3)">3</button>
+      <button onclick="appendToResult('/')">/</button>
+    </div>
+    <div class="keypad-row">
+      <button onclick="appendToResult(4)">4</button>
+      <button onclick="appendToResult(5)">5</button>
+      <button onclick="appendToResult(6)">6</button>
+      <button onclick="appendToResult('-')">-</button>
+      </div>
+    <div class="keypad-row">
+      <button onclick="appendToResult(7)">7</button>
+      <button onclick="appendToResult(8)">8</button>
+      <button onclick="appendToResult(9)">9</button>
+      <button onclick="appendToResult('+')">+</button>
+      </div>
+    <div class="keypad-row">
+      <button onclick="appendToResult('.')">.</button>
+      <button onclick="appendToResult(0)">0</button>
+      <button onclick="calculateResult()">=</button>
+      <button onclick="appendToResult('*')">*</button>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <script src="calculator.js"></script>
+</body>
+
+</html>
